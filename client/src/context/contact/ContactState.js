@@ -53,7 +53,7 @@ const ContactState = (props) => {
   }
   // set current contact
   const setCurrentContact = (id) => {
-    const contact = initialState.contacts.find((item) => item.id == parseInt(id));
+    const contact = initialState.contacts.find((item) => item.id === parseInt(id));
     dispatch({
       type: SET_CURRENT_CONTACT,
       payload: contact

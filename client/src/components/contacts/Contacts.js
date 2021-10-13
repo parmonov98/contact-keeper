@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import ContactContext from '../../context/contact/ContactContext';
 import ContactItem from './ContactItem';
@@ -6,14 +6,13 @@ import ContactItem from './ContactItem';
 const Contacts = () => {
   const contactContext = useContext(ContactContext);
   let { contacts, filtered } = contactContext;
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (filtered != null) {
-      contacts = filtered;
-      console.log(contacts);
-    }
+  //   if (filtered != null) {
 
-  }, [filtered, contactContext])
+  //   }
+
+  // }, [filtered, contactContext])
 
   if (contacts.length === 0) {
     return <h3>Add some contacts</h3>;

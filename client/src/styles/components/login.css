@@ -1,0 +1,6 @@
+.was-validated .invalid-feedback{
+  display: block;
+}
+.invalid-feedback{
+  color: #f00;
+}
