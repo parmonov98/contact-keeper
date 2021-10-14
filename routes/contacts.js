@@ -12,12 +12,11 @@ router.get("/", auth, async (req, res) => {
   try {
     const contacts = await Contact.find({ user: req.user.id }).sort({ date: -1 });
 
-    res.json(contacts);
+    return res.json(contacts);
   } catch (error) {
     console.error(error.message);
-    res.status(500).json({ msg: "Server error" });
+    return res.status(500).json({ msg: "Server error" });
   }
-  res.send("Contacts");
 });
 
 // @route POST /api/contacts
@@ -26,7 +25,7 @@ router.get("/", auth, async (req, res) => {
 router.post("/", [
   auth, [
     check("name", "Name is required").isString().notEmpty(),
-    check("phone", "Phone is required").isMobilePhone(),
+    check("phone", "Phone is required").isString(),
     check("email", "Email is required").isEmail(),
   ]
 ], async (req, res) => {
@@ -80,7 +79,7 @@ router.put("/:id", auth, async (req, res) => {
       { new: true }
     );
 
-    res.json(contact);
+    return res.json(contact);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Server error");
@@ -102,14 +101,9 @@ router.delete("/:id", auth, async (req, res) => {
       return res.status(401).json({ msg: "Not authorized" });
     }
 
-    // contact = await Contact.findByIdAndUpdate(req.params.id,
-    //   { $set: contactFields },
-    //   { new: true }
-    // );
-
     await Contact.findByIdAndDelete(req.params.id);
 
-    res.json({ msg: "Contact deleted" });
+    return res.json({ msg: "Contact deleted" });
   } catch (error) {
     console.error(error);
     return res.status(500).send("Server error");

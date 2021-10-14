@@ -17,19 +17,25 @@ const Login = (props) => {
     if (isAuthenticated) {
       props.history.push('/');
     }
-    if (error === 'Invalid credentials') {
+    if (error) {
       setAlert(error, 'danger', 3000);
       setTimeout(() => {
         clearErrors();
       }, 3000);
     }
-    if (error && error.hasOwnProperty('msg') && error.msg === 'Invalid credentials!') {
-      setAlert(error, 'danger', 3000);
-      setTimeout(() => {
-        clearErrors();
-      }, 3000);
+    // if (error === 'Invalid credentials') {
+    //   setAlert(error, 'danger', 3000);
+    //   setTimeout(() => {
+    //     clearErrors();
+    //   }, 3000);
+    // }
+    // if (error && error.hasOwnProperty('msg') && error.msg === 'Invalid credentials') {
+    //   setAlert(error, 'danger', 3000);
+    //   setTimeout(() => {
+    //     clearErrors();
+    //   }, 3000);
 
-    }
+    // }
 
     if (error && error.hasOwnProperty('errors')) {
 
